@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="CourseProjectOOP.View.UserControls.Edit"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CourseProjectOOP.View.UserControls"
+             mc:Ignorable="d" Width="231" Height="125">
+    <Grid Margin="0,-70,0,0">
+
+        <TextBlock Background="{DynamicResource ButtonCol}"/>
+        <Button Width="90" Height="20" Content="Сохранить" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,125"  x:Name="SaveButton" Click="SaveButton_Click"/>
+        <Button Width="90" Height="20" Content="Отмена" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,125" x:Name="CancelButton" Click="CancelButton_Click"/>
+        <WrapPanel Margin="20,20,20,63">
+            <Label Content="Имя:" Foreground="{DynamicResource TextCol}"/>
+            <TextBox Width="150" Height="20" Text="{Binding vidNameDef}" x:Name="nameEnter"/>
+        </WrapPanel>
+        <Button Width="210" Height="20" Content="Удалить" HorizontalAlignment="Center" VerticalAlignment="Top"  x:Name="Delete" Click="DeleteButton_Click" Margin="0,83,0,0"/>
+        <Button Width="210" Height="20" Content="Больше" HorizontalAlignment="Center" VerticalAlignment="Top"  x:Name="More_Button" Click="More_Button_Click" Margin="0,117,0,0"/>
+        <Button Width="210" Height="20" Content="Обрезать" HorizontalAlignment="Center" VerticalAlignment="Top"  x:Name="Cut_Button" Margin="0,151,0,0" Click="Cut_Button_Click"/>
+    </Grid>
+</UserControl>

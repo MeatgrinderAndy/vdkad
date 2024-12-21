@@ -1,0 +1,31 @@
+﻿<Window x:Class="CourseProjectOOP.View.Windows.CutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseProjectOOP.View.Windows"
+        mc:Ignorable="d"
+        Title="CutWindow" Height="450" Width="800">
+    <Grid Background="{DynamicResource ScrollingAreaCol}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="0.4*"/>
+            <RowDefinition Height="0.2*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBox Grid.Row="1" Width="80" Height="20" x:Name="NewBeginning" GotFocus="NewBeginning_GotFocus"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" Width="80" Height="20" x:Name="NewEnding" GotFocus="NewEnding_GotFocus"></TextBox>
+        <Button x:Name="CutButton" Content="Обрезать" Width="70" Height="30" Grid.Row="2" Grid.ColumnSpan="2" Click="CutButton_Click"></Button>
+        <Button x:Name="PointButton" Content="Время" Width="70" Height="30" Grid.Row="1" Grid.ColumnSpan="2" Click="PointButton_Click"></Button>
+        <StackPanel VerticalAlignment="Bottom" Grid.ColumnSpan="2">
+            <MediaElement x:Name="VideoShow"  Width="500" Height="250" Margin="0 0 0 0" LoadedBehavior="Manual" MediaOpened="MediaElement_MediaOpened"/>
+            <Slider x:Name="VideoPosition" Grid.ColumnSpan="2" Width ="500" GotMouseCapture="VideoPosition_GotMouseCapture" LostMouseCapture="VideoPosition_LostMouseCapture"></Slider>
+        </StackPanel>
+        <Button x:Name="PauseButton" Width="50" Height="50" HorizontalAlignment="Left" Margin="50 0 0 0" Content="⏯" FontSize="30" Click="PauseButton_Click"/>
+        <Button x:Name="ProcessStopButton" Content="П" Width="30" Height="30" Grid.Row="2" Click="ProcessStopButton_Click" Margin="16,12,314,12"/>
+    </Grid>
+
+</Window>

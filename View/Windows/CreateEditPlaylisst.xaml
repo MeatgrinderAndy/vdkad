@@ -1,0 +1,31 @@
+﻿<Window x:Class="CourseProjectOOP.View.Windows.CreateEditPlaylisst"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseProjectOOP.View.Windows"
+        mc:Ignorable="d"
+        Title="CreateEditPlaylisst" Height="362" Width="377">
+    <Grid Background="{DynamicResource ScrollingAreaCol}" Margin="0,-70,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <Image x:Name="PlaylistImage" Width="240" Height="144" VerticalAlignment="Top" Margin="0 50 0 10"/>
+            <Button x:Name="ChooseImageButton" Width="80" Height="20" Content="Выбрать" Margin="0 0 0 30" Click="ChooseImageButton_Click"/>
+            <WrapPanel Width="220" Margin="0 0 0 100">
+
+                <Label Content="Название: " Foreground="{DynamicResource TextCol}"></Label>
+                <TextBox x:Name="PlaylistNameField" Width="150" Height="20" Margin="0 0 0 0"/>
+
+            </WrapPanel>
+            <Button Width="80" Height="20" Content="Сохранить" Click="Button_Click"/>
+        </StackPanel>
+    </Grid>
+    
+    
+</Window>

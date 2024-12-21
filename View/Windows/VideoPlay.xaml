@@ -1,0 +1,24 @@
+﻿<Window x:Class="CourseProjectOOP.View.Windows.VideoPlay"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseProjectOOP.View.Windows"
+        mc:Ignorable="d"
+        Title="VideoPlay" Height="450" Width="800"
+        PreviewMouseMove="Window_PreviewMouseMove">
+
+    <Grid Background="#2B2B2B" >
+        <MediaElement x:Name="VideoPlayer" LoadedBehavior="Manual" MediaOpened="MediaElement_MediaOpened" MediaEnded="VideoPlayer_MediaEnded" ></MediaElement>
+        <Button x:Name="RestartButton" Width="30" Height="30" Panel.ZIndex="10" Opacity="1" Content="↻" FontSize="20" Click="RestartButton_Click"></Button>
+        <Grid Height="117" VerticalAlignment="Bottom" Margin="0,317,0,0" x:Name="VideoControls">
+            <Button Width="40" Height="40" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,45" Name="PPButton" Click="PausePlay"></Button>
+            <Label x:Name="SpeedOfVideo" MouseLeftButtonDown="SpeedOfVideo_MouseLeftButtonDown" VerticalAlignment="Bottom" HorizontalAlignment="Right" Background="LightGray"  Width="30" Height="30" RenderTransformOrigin="0.5,0.5" Margin="0,0,100,50" ></Label>
+            <Slider x:Name="VolumeSlide" ValueChanged="VolumeSlide_ValueChanged" Maximum="1" Width="100" VerticalAlignment="Bottom"  Value="0.5" Margin="0,0,-300,56"/>
+            <Slider x:Name="VideoPosition" VerticalAlignment="Bottom" MouseLeftButtonUp="slider_MouseLeftButtonUp" GotMouseCapture="VideoPosition_GotMouseCapture" LostMouseCapture="VideoPosition_LostMouseCapture" Margin="100,0,100,18" />
+            <Label Foreground="{DynamicResource TextCol}" FontSize="18" Content="00:00:00" VerticalAlignment="Bottom" Margin="20 0 0 13" HorizontalAlignment="Left" x:Name="curTime" Width="75"/>
+            <Label Foreground="{DynamicResource TextCol}" FontSize="18" Content="--:--:--" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 0 20 13" x:Name="wholeTime"/>
+        </Grid>
+    </Grid>
+
+</Window>

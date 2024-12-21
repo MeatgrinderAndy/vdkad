@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:l="clr-namespace:System;assembly=mscorlib">
+
+    <l:String x:Key="MoonSun">&#9788;</l:String>
+    <SolidColorBrush x:Key="HeaderFooter" Color="LightGray"></SolidColorBrush>
+    <SolidColorBrush x:Key="TextCol" Color="Black"></SolidColorBrush>
+    <SolidColorBrush x:Key="ButtonCol" Color="#C3C3C3"></SolidColorBrush>
+    <SolidColorBrush x:Key="SidePanelCol" Color="WhiteSmoke"></SolidColorBrush>
+    <SolidColorBrush x:Key="ScrollingAreaCol" Color="Gray"></SolidColorBrush>
+</ResourceDictionary>

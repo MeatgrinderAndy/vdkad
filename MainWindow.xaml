@@ -1,0 +1,155 @@
+﻿<Window x:Class="CourseProjectOOP.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseProjectOOP"
+        xmlns:VideoBanner="clr-namespace:CourseProjectOOP.View.UserControls"
+        xmlns:comms="clr-namespace:CourseProjectOOP.Commands"
+        xmlns:UserControls="clr-namespace:CourseProjectOOP.View.UserControls"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        WindowStyle="None">
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static comms:Commands.SaveTables}" Executed="Save_Executed"/>
+        <CommandBinding Command="{x:Static comms:Commands.Add}" Executed="Add_Executed"/>
+        <CommandBinding Command="{x:Static comms:Commands.Find}" Executed="Find_Executed"/>
+        <CommandBinding Command="{x:Static comms:Commands.SortByName}" Executed="SortName_Executed"/>
+        <CommandBinding Command="{x:Static comms:Commands.CutOpen}" Executed="CUTButton_Executed"/>
+        <CommandBinding Command="{x:Static comms:Commands.Close}" Executed="Close_Executed"/>
+        <CommandBinding Command="{x:Static comms:Commands.ChangeTheme}" Executed="ChangeTheme_Executed"/>
+        <CommandBinding Command="{x:Static comms:Commands.Language}" Executed="ChangeLanguage_Executed"/>
+        <CommandBinding Command="{x:Static comms:Commands.WindowSize}" Executed="ChangeSize_Executed"/>
+        <CommandBinding Command="{x:Static comms:Commands.SortBySize}" Executed="SortSize_Executed"/>
+        <CommandBinding Command="{x:Static comms:Commands.SortByDate}" Executed="SortDate_Executed"/>
+        <CommandBinding Command="{x:Static comms:Commands.SortByDate}" Executed="SortDate_Executed"/>
+    
+    </Window.CommandBindings>
+    <Window.Resources>
+
+        <Style TargetType="Button">
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsMouseOver" Value="True"></Condition>
+                        <Condition Property="IsPressed" Value="True"></Condition>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Opacity" Value="0.7"></Setter>
+                </MultiTrigger>
+            </Style.Triggers>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <ControlTemplate.Triggers/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Background" Value="{DynamicResource ButtonCol}"></Setter>
+            <Setter Property="Foreground" Value="{DynamicResource TextCol}"></Setter>
+            <Setter Property="BorderBrush" Value="{DynamicResource ButtonCol}"></Setter>
+        </Style>
+        <Style TargetType="Grid">
+            <Setter Property="Cursor" Value="Arrow"/>
+        </Style>
+        <Style TargetType="VideoBanner:UserControl1">
+            <Setter Property="Margin" Value="10 10 0 0"/>
+        </Style>
+        
+        <Style TargetType="MenuItem">
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="Click">
+                <EventTrigger.Actions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Duration="0:0:0.5" To="0.5" AutoReverse="True"></DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger.Actions>
+            </EventTrigger>
+            </Style.Triggers>
+            <Setter Property="Background" Value="{DynamicResource ButtonCol}"></Setter>
+            <Setter Property="Foreground" Value="{DynamicResource TextCol}"></Setter>
+            <Setter Property="BorderBrush" Value="{DynamicResource ButtonCol}"></Setter>
+        </Style>
+         <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource TextCol}"></Setter>
+            <Setter Property="Background" Value="{DynamicResource HeaderFooter}"></Setter>
+        </Style>
+        <Style x:Key="Pling" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=findBar, Path=Text.IsEmpty}" Value="False">
+                   <Setter Property="Foreground" Value="LightGreen"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+
+
+
+    <Grid ShowGridLines="False" x:Name="myGrid" Background="{DynamicResource ScrollingAreaCol}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Grid.ColumnSpan="2" Background="{DynamicResource HeaderFooter}"></Border>
+        <Border Grid.Row="2" Grid.ColumnSpan="2" Background="{DynamicResource HeaderFooter}"></Border>
+        <Border Background="{DynamicResource SidePanelCol}" Grid.Row="1" ></Border>
+        <Border Grid.Column="1" Background="{DynamicResource ScrollingAreaCol}" Grid.Row="1" ></Border>
+
+                
+        <Button  x:Name="Language" Grid.Column="1" Grid.Row="2" Width="80" Height="25" Command="{x:Static comms:Commands.Language}" HorizontalAlignment="Right" Margin="20" Content="{DynamicResource LangChange}"></Button>
+        <ScrollViewer Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Hidden">
+            <WrapPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top" x:Name="vidList" Background="{DynamicResource ScrollingAreaCol}">
+            </WrapPanel>
+        </ScrollViewer>
+        <Menu x:Name="SortingParms" Grid.Column ="1" Height="15" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontSize="10">
+            <MenuItem Header="{DynamicResource SortName}" x:Name="SortByName" Command="{x:Static comms:Commands.SortByName}"/>
+            <MenuItem Header="{DynamicResource SortSize}" x:Name="SortBySize" Command="{x:Static comms:Commands.SortBySize}"/>
+            <MenuItem Header="{DynamicResource SortDate}" x:Name="SortByDate" Command="{x:Static comms:Commands.SortByDate}"/>
+        </Menu>
+        <StackPanel Grid.Row="1" x:Name="VideoParms">
+            <Button x:Name="AddButton" Content="{DynamicResource AddButton}" Command="{x:Static comms:Commands.Add}" Background="{DynamicResource ButtonCol}" Foreground="{DynamicResource TextCol}"/>
+            <Button x:Name="SVButton" Content="{DynamicResource SaveText}" Background="{DynamicResource ButtonCol}" Foreground="{DynamicResource TextCol}" Command="{x:Static comms:Commands.SaveTables}"></Button>
+            <Button x:Name="ClearButton" Content="{DynamicResource EraseAllText}" Background="{DynamicResource ButtonCol}" Foreground="{DynamicResource TextCol}" Click="ClearButton_Click"></Button>
+
+        </StackPanel>
+        
+        <StackPanel Grid.Row="1" VerticalAlignment="Bottom">
+            <Button x:Name="PlayListsButton" Content="{DynamicResource Playlist}" Click="PlayListsButton_Click"></Button>
+            <Button x:Name="VideosButton" Content="{DynamicResource AllVideos}" Click="VideosButton_Click"></Button>
+        </StackPanel>
+        <Label Foreground="{DynamicResource TextCol}" Content="{DynamicResource AppName}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+
+        <Button Width="16" FontSize="25" Height="30" Grid.Column="1" VerticalAlignment="Center" Background="Transparent" HorizontalAlignment="Right" Margin="20" Command="{x:Static comms:Commands.Close}" BorderThickness="0">
+            <TextBlock Foreground="{DynamicResource TextCol}" VerticalAlignment="Center" HorizontalAlignment="Left" >&#215;</TextBlock>
+        </Button>
+
+        <Button  Width="16" FontSize="25" Height="30" Grid.Column="1" VerticalAlignment="Center" Background="Transparent" HorizontalAlignment="Right" Margin="20 20 50 20" Command="{x:Static comms:Commands.WindowSize}" BorderThickness="0">
+            <TextBlock Foreground="{DynamicResource TextCol}" VerticalAlignment="Center">&#9633;</TextBlock>
+        </Button>
+
+        <Button  Width="16" FontSize="25" Height="30" Grid.Column="1" VerticalAlignment="Center" Background="Transparent" HorizontalAlignment="Right" Margin="20 20 80 20" MouseDown="HideWindow_Click" BorderThickness="0">
+            <TextBlock Foreground="{DynamicResource TextCol}" VerticalAlignment="Center" MouseDown="HideWindow_Click">-</TextBlock>
+        </Button>
+
+        <TabPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+            <TextBox  Width="100" Height="20" Background="{DynamicResource SidePanelCol}" BorderBrush="{DynamicResource SidePanelCol}" x:Name="findBar" Foreground="{DynamicResource TextCol}"></TextBox>
+            <Button Width="20" Height="20" x:Name="find" Command="{x:Static comms:Commands.Find}" Content="&#128269;" Style="{StaticResource Pling}"></Button>
+        </TabPanel>
+
+        <Button Content="{DynamicResource MoonSun}" Foreground="{DynamicResource TextCol}" Background="{DynamicResource ButtonCol}" FontSize="35" Grid.Row="2" Width="50" Height="50" x:Name="changeThemeButton" Command="{x:Static comms:Commands.ChangeTheme}"/>
+
+
+        <UserControls:Edit HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2" x:Name="editPanel" Panel.ZIndex="10" Visibility="Hidden"/>
+        <UserControls:EditPlaylist HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2" x:Name="playlistEditPanel" Panel.ZIndex="10" Visibility="Hidden"/>
+    </Grid>
+</Window>
